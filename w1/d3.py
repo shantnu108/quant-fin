@@ -155,26 +155,74 @@
 
 
 
+# import numpy as np
+# import pandas as pd
+# import matplotlib.pyplot as plt
+
+# np.random.seed(42)
+# days=100
+
+# priceChanges=np.random.normal(loc=1.001,scale=0.02,size=days)
+# prices = 100*np.cumprod(priceChanges)
+
+# df= pd.DataFrame(prices,columns=["Close_Price"])
+
+# meanPrice=df["Close_Price"].mean()
+# df["Returns"]=df["Close_Price"].pct_change()#(today - yesterday) / yesterday
+# meanReturn=df["Returns"].mean()
+# print(f"Mean Price{meanPrice:.2f}")
+
+# fig,(ax1,ax2)=plt.subplots(2,1,figsize=(10,8),sharex=True)
+# ax1.plot(df["Close_Price"])
+# ax1.axhline(meanPrice,linestyle="--")
+# ax2.plot(df["Returns"])
+# plt.tight_layout()
+# plt.show()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 import numpy as np
-import pandas as pd
+
 import matplotlib.pyplot as plt
 
-np.random.seed(42)
-days=100
+TRUEmean=0.0005
+STDdev=0.02
+NUMdays=100000
 
-priceChanges=np.random.normal(loc=1.001,scale=0.02,size=days)
-prices = 100*np.cumprod(priceChanges)
+dailyReturns=np.random.normal(loc=TRUEmean,scale=STDdev,size=NUMdays)
+cumulativeSum=np.cumsum(dailyReturns)
+daysCount=np.arange(1,NUMdays+1)
+runningMean=cumulativeSum/daysCount
+plt.figure(figsize=(12,6))
+plt.plot(runningMean,color="red",linewidth=1.5,label="calulated runningmean")
+plt.axhline(y=TRUEmean,color="green",linestyle="--",linewidth=1,label="True Mean")
 
-df= pd.DataFrame(prices,columns=["Close_Price"])
-
-meanPrice=df["Close_Price"].mean()
-df["Returns"]=df["Close_Price"].pct_change()#(today - yesterday) / yesterday
-meanReturn=df["Returns"].mean()
-print(f"Mean Price{meanPrice:.2f}")
-
-fig,(ax1,ax2)=plt.subplots(2,1,figsize=(10,8),sharex=True)
-ax1.plot(df["Close_Price"])
-ax1.axhline(meanPrice,linestyle="--")
-ax2.plot(df["Returns"])
-plt.tight_layout()
+plt.title('Convergence of Mean Return: Early Jumps vs Long-Run Settle')
+plt.xlabel('Number of Days (Repetitions)')
+plt.ylabel('Average Return')
+plt.legend()
+plt.grid(True, alpha=0.3)
 plt.show()
