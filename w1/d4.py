@@ -114,6 +114,7 @@ def simulate_path(rets,start_val,withdrawl=0):
 
 
 
+# np.random.seed(20)
 intWel=100_000
 yr=20
 
@@ -137,9 +138,20 @@ fig, ax=plt.subplots(figsize=(14,6))
 ax.plot(wealth_lucky_lump,label="lucky path",color="green",linewidth=2)
 ax.plot(wealth_unlucky_lump,label="Unlucy path",color="red",linestyle="--",linewidth=2)
 
+ax.set_title(f"Lump Sum: Final Value is Identical\n(₹{int(wealth_lucky_lump[-1])} vs ₹{int(wealth_unlucky_lump[-1])})")
+
 ax.legend()
 ax.grid(True,alpha=0.3)
 plt.show()
+
+fig,ax1=plt.subplots(figsize=(12,6))
+ax1.plot(wealth_lucky_lumpWD,label="wealth lucky withdrawl",color="green",linewidth=2)
+ax1.plot(wealth_unlucky_lumpWD,label="wealth unlucky withdrawl",color="black",linestyle="--",linewidth=2)
+
+ax1.legend()
+ax1.grid(True,alpha=1)
+plt.show()
+
 
 
 
