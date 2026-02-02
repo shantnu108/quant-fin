@@ -48,36 +48,180 @@
 
 
 
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
+# import numpy as np
+# import pandas as pd
+# import matplotlib.pyplot as plt
 
-intCap=100_000
-nPeriods=252
-mu=0.10
-sigma=0.20
+# intCap=100_000
+# nPeriods=252
+# mu=0.10
+# sigma=0.20
 
-# np.random.seed(42)
-dailyMu=mu/252
-dailtVol=sigma/np.sqrt(252)
+# # np.random.seed(42)
+# dailyMu=mu/252
+# dailyVol=sigma/np.sqrt(252)
 
-returns = np.random.normal(loc=dailyMu,scale=dailtVol,size=nPeriods)
-wealth=[intCap]
-for r in returns:
-    newWealth=wealth[-1] * (1+r)
-    wealth.append(newWealth)
+# returns = np.random.normal(loc=dailyMu,scale=dailyVol,size=nPeriods)
+# # print(returns)
+# wrongWealth = intCap * (1 + returns.sum())
 
-df = pd.DataFrame({
-    "Daily Return":returns,
-    "Wealth":wealth[1:]
-})
-df.head()
+# wealth=[intCap]
+# for r in returns:
+#     newWealth=wealth[-1] * (1+r)
+#     wealth.append(newWealth)
+
+# df = pd.DataFrame({
+#     "Daily Return":returns,
+#     "Wealth":wealth[1:]
+# })
+# df.head()
 
 
-plt.figure(figsize=(10,5))
-plt.plot(df["Wealth"])
-plt.axhline(intCap,linestyle="--")
-plt.title("Compounding wealth over time")
-plt.xlabel("days")
-plt.ylabel("Cap")
-plt.show()
+# plt.figure(figsize=(10,5))
+# plt.plot(df["Wealth"])
+# plt.axhline(intCap,linestyle="--")
+# plt.title("Compounding wealth over time")
+# plt.xlabel("days")
+# plt.ylabel("Cap")
+# plt.show()
+
+# print("final wealth right ",round(df["Wealth"].iloc[-1],2))
+# print("final wealth wrong",round(wrongWealth,2))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# import numpy as np
+# import pandas as pd
+# import matplotlib.pyplot as plt
+
+# intCap=100_000
+# nPeriods=252
+# mu=0.10
+# sigma=0.20
+
+# # np.random.seed(42)
+
+# dailyMu=mu/252
+# dailyVol=sigma/np.sqrt(nPeriods)
+
+# returnsA=np.random.normal(dailyMu,dailyVol,nPeriods)
+# returns2=np.random.normal(dailyMu,dailyVol,nPeriods)
+
+# # returnsA=returns.copy()
+
+# returnsB=np.random.permutation(returns2)
+
+# def compundWealth(returns,startCap):
+#     wealth=[startCap]
+#     for r in returns:
+#         wealth.append(wealth[-1]*(1+r))
+#     return np.array(wealth[1:])
+
+# wealthA=compundWealth(returnsA,intCap)
+# wealthB=compundWealth(returnsB,intCap)
+
+
+# df=pd.DataFrame({
+#     "WealthA":wealthA,"WealthB":wealthB
+# })
+
+# print("final wealth a",round(df["WealthA"].iloc[-1],2))
+# print("final wealth b",round(df["WealthB"].iloc[-1],2))
+
+
+# def drawdown(wealth):
+#     peak=np.maximum.accumulate(wealth)
+#     dd=(wealth-peak)/peak
+#     return dd
+
+# ddA=drawdown(wealthA)
+# ddB=drawdown(wealthB)
+
+# print("Max Drawdown A:", round(ddA.min()*100, 2), "%")
+# print("Max Drawdown B:", round(ddB.min()*100, 2), "%")
+
+# plt.figure(figsize=(12,5))
+# plt.plot(df["WealthA"],label="A")
+# plt.plot(df["WealthB"],label="B")
+# plt.axhline(intCap,linestyle="--")
+# plt.legend()
+# plt.title("same mean")
+# plt.show()
+
+
+
+
+
+
+
+
+
+
+
+
+
