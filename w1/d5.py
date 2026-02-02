@@ -225,3 +225,54 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import numpy as np
+intCap=100_000
+nPeriods=252
+mu=0.10
+sigma=0.20
+
+# np.random.seed(42)
+
+dailyMu=mu/252
+dailyVol=sigma/np.sqrt(252)
+
+returns=np.random.normal(dailyMu,dailyVol,nPeriods)
+
+wealth=[intCap]
+
+for r in returns:
+    wealth.append(wealth[-1]*(1+r))
+
+wealth=np.array(wealth[1:])
+
+finalvalue=wealth[-1]
+
+peak=np.maximum.accumulate(wealth)
+drawdown=(wealth-peak)/peak
+maxdrawdown=drawdown.min()
+
+print("final value",round(finalvalue,2))
+print("max dd",round(maxdrawdown*100,2),"%")
